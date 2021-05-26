@@ -1,6 +1,6 @@
 <template>
   <div>
-      <FormUser :type="type" @submitForm="login" :error='error'/>
+      <FormUser :type="type" @submitForm="login"/>
   </div>
 </template>
 
@@ -10,8 +10,7 @@ export default {
     name: "Login",
     data(){
         return {
-            type: "login",
-            error: {}
+            type: "login"
         }
     },
     methods: {

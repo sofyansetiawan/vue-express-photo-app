@@ -10,8 +10,7 @@ export default {
     name: "Register",
     data(){
         return {
-            type: "register",
-            error: {}
+            type: "register"
         }
     },
     methods: {

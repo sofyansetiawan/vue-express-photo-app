@@ -10,7 +10,6 @@ const {
 
 class UserController {
     static register(req, res, next) {
-        console.log("MASUK REGISTER")
         let {
             email,
             password
@@ -26,13 +25,12 @@ class UserController {
                 })
             })
             .catch(err => {
+                console.log(err)
                 next(err)
             })
     }
 
     static async login(req, res, next) {
-        console.log("MASUK LOGIN")
-        console.log(req.body.email, req.body.password)
         try {
             let {
                 email,

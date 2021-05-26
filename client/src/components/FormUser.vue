@@ -1,14 +1,12 @@
 <template>
   <div class="container container-login">
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if="error.email">
-                <strong>Warning!</strong> {{errors.email}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if="error.password">
-                <strong>Warning!</strong> {{errors.password}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
         <main class="form-signin">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if="error.length">
+                <strong>Warning!</strong>
+                <ul>
+                    <li v-for="(item, index) in error" v-bind:key="index">{{item}}</li>
+                </ul>
+            </div>
             <form @submit.prevent="actionSubmit">
                 <i class="fas fa-user-plus" style="font-size: 40px;display:block;"></i>
                 <h1 class="h3 mb-3 fw-normal">{{title}}</h1>
@@ -38,10 +36,6 @@ export default {
         type: {
             type: String,
             default: 'login'
-        },
-        error: {
-            type: Object,
-            default: () => ({ email: '', password: '' })
         }
     },
     data(){
@@ -52,17 +46,18 @@ export default {
     },
     methods: {
         actionSubmit () {
-            console.log("masuk action submit login")
             this.$emit('submitForm', { email: this.email, password: this.password })
         }
     },
     computed: {
         title(){
-            console.log(this.type)
             return this.type == "login" ? "Please sign in" : "Please sign up"
         },
         button(){
             return this.type == "login" ? "Sign In" : "Sign Up"
+        },
+        error(){
+            return this.$store.state.error
         }
     }
 }

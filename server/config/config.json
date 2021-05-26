@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "rootroot",
-    "database": "database_photo",
+    "database": "interview_bumi_ai",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

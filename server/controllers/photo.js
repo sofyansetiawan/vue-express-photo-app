@@ -8,7 +8,8 @@ class PhotoController {
     Photo.findAll({
         order: [
           ['id', 'ASC']
-        ]
+        ],
+        limit: 20
       })
       .then(data => res.status(200).json({
         Photos: data
@@ -75,7 +76,7 @@ class PhotoController {
       .then(photo => res.status(200).json({
         msg: "deleted"
       }))
-      .catch(err => res.render(err))
+      .catch(err => res.next(err))
   }
 
 }

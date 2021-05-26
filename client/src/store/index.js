@@ -8,8 +8,8 @@ export const store = createStore({
     state(){
         return { 
             photos: [], 
-            login: true,
-            error: ""
+            login: false,
+            error: []
         }
     },
     mutations: {
@@ -32,22 +32,19 @@ export const store = createStore({
                 router.push({ name: 'Home' })
             })
             .catch((e) => {
-                console.log("ERROR LOGIN")
                 if (e.response.status === 400) {
-                    context.commit('setError', e.response.data.errors[0])
+                    context.commit('setError', e.response.data.errors)
                 }
             })
         },
         register (context, { email, password }) {
             httpClient.post('/users/register', { email, password })
-            .then((data) => {
-                console.log(data)
+            .then(() => {
                 router.push({ name: 'Home' })
             })
             .catch((e) => {
-                console.log("ERROR REGISTER")
                 if (e.response.status === 400) {
-                    context.commit('setError', e.response.data.errors[0])
+                    context.commit('setError', e.response.data.errors)
                 }
             })
         },
@@ -66,7 +63,11 @@ export const store = createStore({
             .then((res) => {
                 context.commit('setPhotos', res.data.Photos)
             })
-            .catch((e) => console.log(e))
+            .catch((e) => {
+                if (e.response.status === 400) {
+                    context.commit('setError', e.response.data.errors)
+                }
+            })
         },
         logout(context){
             Session.destroy()

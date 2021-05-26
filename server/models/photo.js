@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: {
       type: DataTypes.STRING,
+      unique: true,
       validate: {
         notEmpty: {
           args: true,
@@ -34,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     url: {
       type: DataTypes.STRING,
+      unique: true,
       validate: {
         notEmpty: {
           args: true,
@@ -43,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     thumbnailUrl: {
       type: DataTypes.STRING,
+      unique: true,
       validate: {
         notEmpty: {
           args: true,

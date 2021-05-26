@@ -2,16 +2,9 @@
   <div class="container">
         <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
                 <span class="fs-4">PhotoApp</span>
             </a>
-
             <ul class="nav nav-pills">
-                <li class="nav-item" v-if="loginStatus">
-                    <router-link v-bind:to="{name : 'Home'}" class="nav-link"><i class="fas fa-home"></i> Home</router-link>
-                </li>
                 <li class="nav-item" v-if="loginStatus">
                     <router-link v-bind:to="{name : 'Home'}" class="nav-link"><i class="fas fa-list"></i> Photo List</router-link>
                 </li>
@@ -41,8 +34,7 @@ export default {
     },
     computed: {
       loginStatus(){
-        console.log(this.$store.state.login)
-        return this.$store.state.login ? true : false
+        return this.$store.state.login
       }
     },
     methods: {

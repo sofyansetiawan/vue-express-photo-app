@@ -8,9 +8,16 @@ const errorHandler = require('./middlewares/errorHandler')
 const app = express()
 const port = 3000
 
-app.use(cors())
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({ extended: true }))
+
+app.use(cors({
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200
+}))
+
+app.use(express.urlencoded({
+  extended: true
+}))
 app.use(express.json())
 app.use(router)
 app.use(errorHandler)

@@ -6,7 +6,7 @@ function errHandler(err, req, res, next) {
     switch (err.name) {
         case 'SequelizeValidationError':
             err.errors.forEach(element => {
-                error.push(element.message)
+                errors.push(element.message)
             });
             statusCode = 400
             break
@@ -19,6 +19,9 @@ function errHandler(err, req, res, next) {
             statusCode = err.status || statusCode
     }
 
+    console.log(`>>> ERROR`);
+    console.log({status: statusCode, errors})
+    
     res.status(statusCode).json({
         errors: errors
     })
