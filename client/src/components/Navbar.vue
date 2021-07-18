@@ -26,16 +26,23 @@
 </template>
 
 <script> 
+import Session from '@/libs/Session'
+import { store } from '@/store/index'
 export default {
     name: "Navbar",
     props: ["menuLogin"],
     data(){
         return {}
     },
+    created(){
+        if(Session.isAuthenticated()){
+            store.dispatch("setAsLogin")
+        }
+    },
     computed: {
-      loginStatus(){
-        return this.$store.state.login
-      }
+        loginStatus(){
+            return this.$store.state.login
+        }
     },
     methods: {
         logout () {

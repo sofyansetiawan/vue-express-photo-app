@@ -20,8 +20,8 @@
               <td>{{photo.title}}</td>
               <td><img v-bind:src="photo.thumbnailUrl" onerror='this.src="https://maidcleantx.com/wp-content/uploads/2017/10/logo.png"' class="img-thumbnail"></td>
               <td><a v-bind:href="photo.url">{{photo.url}}</a></td>
-              <td><button type="button" class="btn btn-success"><i class="fas fa-pen"></i> Edit</button>&nbsp;
-              <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button></td>
+              <td style="min-width:150px"><button type="button" class="btn btn-success"><i class="fas fa-pen"></i></button>&nbsp;
+              <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
             </tr>
         </tbody>
     </table>
