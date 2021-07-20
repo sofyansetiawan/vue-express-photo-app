@@ -9,7 +9,8 @@ export const store = createStore({
         return { 
             photos: [], 
             login: false,
-            error: []
+            error: [],
+            loading: true
         }
     },
     mutations: {
@@ -21,6 +22,9 @@ export const store = createStore({
         },
         setError(state, payload){
             state.error = payload
+        },
+        setLoading(state, payload){
+            state.loading = payload
         }
     },
     actions: { 
@@ -32,7 +36,7 @@ export const store = createStore({
                 router.push({ name: 'Home' })
             })
             .catch((e) => {
-                if (e.response.status === 400) {
+                if (e.response.status === 400 || e.response.status === 500) {
                     context.commit('setError', e.response.data.errors)
                 }
             })
@@ -43,7 +47,7 @@ export const store = createStore({
                 router.push({ name: 'Home' })
             })
             .catch((e) => {
-                if (e.response.status === 400) {
+                if (e.response.status === 400 || e.response.status === 500) {
                     context.commit('setError', e.response.data.errors)
                 }
             })
@@ -54,7 +58,11 @@ export const store = createStore({
         setAsLogout(context){
             context.commit('setLogin', false)
         },
+        resetError(context){
+            context.commit('setError', [])
+        },
         fetchPhotos(context){ 
+            context.commit('setLoading', true)
             httpClient.get('/photos', {
                 headers: {
                     token: Session.getSession()
@@ -64,10 +72,11 @@ export const store = createStore({
                 context.commit('setPhotos', res.data.Photos)
             })
             .catch((e) => {
-                if (e.response.status === 400) {
+                if (e.response.status === 400 || e.response.status === 500) {
                     context.commit('setError', e.response.data.errors)
                 }
             })
+            .finally(() => context.commit('setLoading', false))
         },
         logout(context){
             Session.destroy()

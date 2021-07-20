@@ -11,9 +11,6 @@ export default {
     name: 'app',
     components: {
       Navbar
-    },
-    created () {
-        document.title = "Welcome To Photo App";
     }
 }
 </script>

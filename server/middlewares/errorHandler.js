@@ -10,12 +10,16 @@ function errHandler(err, req, res, next) {
             });
             statusCode = 400
             break
+        case 'SequelizeUniqueConstraintError':
+            errors.push(err.message)
+            statusCode = 400
+            break
         case 'JsonWebTokenError':
             errors.push('you are not authorized to do this')
             statusCode = 401
             break
         default:
-            errors.push(err.msg)
+            errors.push(err.message)
             statusCode = err.status || statusCode
     }
 

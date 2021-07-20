@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <h1 class="h3 mb-3 fw-normal"><i class="fas fa-list"></i> Photo list</h1>
-    <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Create New</button>
+    <h1 class="h3 mb-3 fw-normal"><button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Create New</button></h1>
+    
     <table class="table">
         <thead>
             <tr>

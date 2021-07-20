@@ -4,13 +4,11 @@
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <span class="fs-4">PhotoApp</span>
             </a>
+            <form class="d-flex" v-if="loginStatus">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
             <ul class="nav nav-pills">
-                <li class="nav-item" v-if="loginStatus">
-                    <router-link v-bind:to="{name : 'Home'}" class="nav-link"><i class="fas fa-list"></i> Photo List</router-link>
-                </li>
-                <li class="nav-item" v-if="loginStatus">
-                    <router-link v-bind:to="{name : 'Home'}" class="nav-link"><i class="fas fa-plus"></i> Create New</router-link>
-                </li>
                 <li class="nav-item" v-if="!loginStatus">
                     <router-link v-bind:to="{name : 'Login'}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Sign In</router-link>
                 </li>

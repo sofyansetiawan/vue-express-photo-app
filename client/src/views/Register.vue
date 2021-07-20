@@ -13,6 +13,10 @@ export default {
             type: "register"
         }
     },
+    created () {
+        document.title = "Register | Photo App";
+        this.$store.dispatch('resetError')
+    },
     methods: {
         register (values) {
             this.$store.dispatch('register', values)

@@ -13,6 +13,10 @@ export default {
             type: "login"
         }
     },
+    created () {
+        document.title = "Login | Photo App";
+        this.$store.dispatch('resetError')
+    },
     methods: {
         login (values) {
             this.$store.dispatch('login', values)
